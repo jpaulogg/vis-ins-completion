@@ -11,7 +11,7 @@ local k = require(plugin..'complete-keyword')
 
 -- table.insert(k.completeopts.default, "shell command")
 -- k.completeopts.text = { t = "echo some text for example", }
--- you can also insert functions (with only one argument)
+-- you can also insert functions (accpet only 'syntax' as an argument)
 
 local l = require(plugin..'complete-line')
 -- l.vis_menu_lines = 4 -- default
