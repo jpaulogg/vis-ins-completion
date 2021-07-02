@@ -9,7 +9,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 	local cnum = sel.col
 	local line = file.lines[lnum]
 	local prefix = line:sub(1, cnum - 1):gsub("^%s+", "")
-	local cmd = string.format([[sed 's/^\s\+//' | vis-complete -l %d '%s']],
+	local cmd = string.format([[sed 's/^\s\+//' | vis-menu -l %d '%s']],
 		M.vis_menu_lines,
 		prefix:gsub("'", "'\\''"))
 	local status, out, err = vis:pipe(file, {start = 0, finish = file.size}, cmd)
@@ -17,7 +17,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 		if err then vis:info(err) end
 		return
 	end
-	vis:insert(out)
+	vis:insert(out:gsub('^' .. prefix, ''))
 end, "Complete line in current file")
 
 return M

@@ -37,7 +37,7 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format("{ %s; } | sort -u | vis-complete -p 'keyword:' '%s'",
+	local cmd = string.format("{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:'",
 		group_cmds(M.completeopts, syntax),
 		prefix)
 	local status, out, err = vis:pipe(file, { start = 0, finish = file.size }, cmd)
@@ -46,9 +46,9 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 		return
 	end
 	if vis.mode == vis.modes.INSERT then
-		vis:insert(out)
+		vis:insert(out:gsub('^' .. prefix, ''))
 	elseif vis.mode == vis.modes.REPLACE then
-		vis:replace(out)
+		vis:replace(out:gsub('^' .. prefix, ''))
 	end
 end, "Complete keyword in current file or in an external dictionary")
 
