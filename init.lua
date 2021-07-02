@@ -1,4 +1,4 @@
--- insert completion: keyword, dictionary, line and character
+-- insert completion plugins: keyword, dictionary, line and character
 
 local plugin = 'plugins/ins-completion/'
 
