@@ -12,12 +12,12 @@ M.completeopts = {
 --	text = { list of commands },
 }
 
-local function group_cmds(tbl, syn)
+local function group_cmds(tbl, arg)
 	local cmds = {}
 	local tbl_key = tbl[syn] or tbl['default']
 	for k,v in pairs(tbl_key) do
-		if k == 'd' then
-			table.insert(cmds, v(syn))
+		if type(v) == 'function' then
+			table.insert(cmds, v(arg))
 		else
 			table.insert(cmds, v)
 		end
