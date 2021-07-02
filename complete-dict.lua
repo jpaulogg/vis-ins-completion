@@ -1,9 +1,14 @@
--- completa palavras em dicionários definidos por syntax.
 -- completes words in dictionary file defined by syntax.
+
+dictfiles =  { 
+	path = '~/.local/share/dict/',
+--	text = '/usr/share/words',
+}
 
 vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 	local win = vis.win
 	local file = win.file
+
 	local pos = win.selection.pos
 	if not pos then return end
 	local range = file:text_object_word(pos > 0 and pos-1 or pos);
@@ -11,21 +16,20 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 	if range.finish > pos then range.finish = pos end
 	if range.start == range.finish then return end
 	local prefix = file:content(range)
-	local syntax = win.syntax or 'bash'  -- dicionário padrão (útil na linha de comando)
-	if not syntax or not prefix then return end
-	local dictionary = "~/.config/vis/dict/"..syntax
-	local cmd = string.format("vis-complete '%s' < %s", prefix, dictionary)
-	local menu = io.popen(cmd)
-	local out = menu:read("*all")
-	local sucess, status = menu:close()
-	vis:redraw()
-	if out and sucess then
-		if vis.mode == vis.modes.INSERT then
-			vis:insert(out)
-		elseif vis.mode == vis.modes.REPLACE then
-			vis:replace(out)
-		end
-	elseif status ~= 0 then
-		vis:info(out)
+	if not prefix then return end
+
+	local syntax = win.syntax or 'bash' -- useful in the command prompt
+	local dict = dictfiles[syntax] or dictfiles["path"] .. syntax
+	local cmd = string.format("vis-complete -p 'dictionary:' '%s' < %s",
+		prefix, dict)
+	local status, out, err = vis:pipe(file, { start = 0, finish = 0 }, cmd)
+	if status ~= 0 or not out then
+		if err then vis:info(err) end
+		return
 	end
-end, "Complete word in dictionary file - vis/dict/{syntax}")
+	if vis.mode == vis.modes.INSERT then
+		vis:insert(out)
+	elseif vis.mode == vis.modes.REPLACE then
+		vis:replace(out)
+	end
+end, "Complete word in dictionary file")

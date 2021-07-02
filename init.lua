@@ -1,8 +1,18 @@
 -- insert completion: keyword, dictionary, line and character
 
-local path = 'plugins/ins-completion/'
+local plugin = 'plugins/ins-completion/'
 
-require(path..'complete-keyword')
-require(path..'complete-dict')
-require(path..'complete-line')
-require(path..'complete-char')
+local d = require(plugin..'complete-dict')
+local k = require(plugin..'complete-keyword')
+-- dictfiles =  { 
+-- 	path = '~/.local/share/dict/',
+-- 	text = '/usr/share/words',
+-- }
+
+-- table.insert(k.completeopts.default, "shell command")
+-- k.completeopts.text = { t = "echo some text for example", }
+
+local l = require(plugin..'complete-line')
+-- l.vis_menu_lines = 4 -- default
+
+local c = require(plugin..'complete-char')
