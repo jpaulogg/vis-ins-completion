@@ -20,7 +20,7 @@ for the [vis editor](https://github.com/martanne/vis/).
 
 ### Bugs
 Line completion wont work properly if the first characters are meta-characters.
-That is fixed in the vis-complete branch, but you will need to use [this version
+This is fixed in the vis-complete branch, but you will need to use [this version
 of vis-complete](https://github.com/martanne/vis/pull/959).
 
 ### Configuration
