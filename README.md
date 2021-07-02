@@ -7,10 +7,12 @@ for the [vis editor](https://github.com/martanne/vis/).
   - mapped to `<C-x><C-l>`
 * character completion:
   - mapped to `<C-Up>` and `<C-Down>`
-  - in vim this is mapped to [<C-E>](https://vimhelp.org/scroll.txt.html#CTRL-E) and [<C-Y>](https://vimhelp.org/scroll.txt.html#CTRL-Y)
+  - in vim this is mapped to [`<C-E>`](https://vimhelp.org/scroll.txt.html#CTRL-E) and [`<C-Y>`](https://vimhelp.org/scroll.txt.html#CTRL-Y)
 * dictionary completion:
   - mapped to `<C-x><C-k>`
   - dictionary must be a new-line separated list of items.
+  - default dictionary path is `~/.local/share/dict/{syntax}`.
+  - syntaxes names are the same defined by the [filetype.lua plugin](https://github.com/martanne/vis/blob/master/lua/plugins/filetype.lua)
 * keyword completion:
   - mapped to `<C-n>`. **Note that this will overwrite standard word completion** [mapping](https://github.com/martanne/vis/blob/master/lua/plugins/complete-word.lua)
   - this method combine the output of shell commands in the [completeopts](init.lua#L12-L13) table.
@@ -18,7 +20,7 @@ for the [vis editor](https://github.com/martanne/vis/).
 
 ### Bugs
 Line completion wont work properly if the first characters are meta-characters.
-That is fixed in the vis-complete branch, but you will need to use [this version
+This is fixed in the vis-complete branch, but you will need to use [this version
 of vis-complete](https://github.com/martanne/vis/pull/959).
 
 ### Configuration
@@ -28,7 +30,7 @@ You can set some options from [init.lua](init.lua) file or from your visrc.lua:
 * [list of shell commands](init.lua#L12-L13) - used by keyword completion method.
 * [number of lines](init.lua#L13) in vis-menu - line completion
 
-### Instalation
+### Installation
 Each script can be instaled separetaly. For example:
 ```bash
 mkdir -p ~/.config/vis/plugins
