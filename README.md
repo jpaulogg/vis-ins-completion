@@ -28,7 +28,7 @@ You can set some options from [init.lua](init.lua) file or from your visrc.lua:
 * [list of shell commands](init.lua#L12-L13) - used by keyword completion method.
 * [number of lines](init.lua#L13) in vis-menu - line completion
 
-### Instalation
+### Installation
 Each script can be instaled separetaly. For example:
 ```bash
 mkdir -p ~/.config/vis/plugins
