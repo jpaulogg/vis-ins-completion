@@ -7,7 +7,7 @@ for the [vis editor](https://github.com/martanne/vis/).
   - mapped to `<C-x><C-l>`
 * character completion:
   - mapped to `<C-Up>` and `<C-Down>`
-  - in vim this is mapped to [<C-E>](https://vimhelp.org/scroll.txt.html#CTRL-E) and [<C-Y>](https://vimhelp.org/scroll.txt.html#CTRL-Y)
+  - in vim this is mapped to [`<C-E>`](https://vimhelp.org/scroll.txt.html#CTRL-E) and [`<C-Y>`](https://vimhelp.org/scroll.txt.html#CTRL-Y)
 * dictionary completion:
   - mapped to `<C-x><C-k>`
   - dictionary must be a new-line separated list of items.
