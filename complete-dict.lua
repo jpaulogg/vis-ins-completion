@@ -20,7 +20,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 
 	local syntax = win.syntax or 'bash' -- useful in the command prompt
 	local dict = dictfiles[syntax] or dictfiles["path"] .. syntax
-	local cmd = string.format("grep '^%s' %s | vis-menu -p 'dictionary:'",
+	local cmd = string.format([[grep '^%s' %s | vis-menu -p 'dictionary:' | tr -d '\n']],
 		prefix, dict)
 	local status, out, err = vis:pipe(file, { start = 0, finish = 0 }, cmd)
 	if status ~= 0 or not out then
