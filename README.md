@@ -19,10 +19,11 @@ for the [vis editor](https://github.com/martanne/vis/).
   - this method combine the output of shell commands in the [completeopts](init.lua#L12-L13) table.
   - the default behaviour is to combine word completion and dictionary completion.
 
-### Bugs
+### vis-complete branch
 Line completion wont work properly if the first characters are meta-characters.
-This is fixed in the vis-complete branch, but you will need to use [this version
-of vis-complete](https://github.com/martanne/vis/pull/959).
+This is fixed in the vis-complete branch, but you will need to use [my version
+of vis-complete](https://github.com/martanne/vis/pull/959). With this, vis-complete
+can be used to complete text objects other than short words (in addition to other improvements).
 
 ### Configuration
 You can set some options from [init.lua](init.lua) file or from your visrc.lua:
