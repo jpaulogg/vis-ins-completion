@@ -9,9 +9,9 @@ local k = require(plugin..'complete-keyword')
 -- 	text = '/usr/share/words',
 -- }
 
--- local long_words = "tr -cs '[:alnum:]_.:-' '\n'")
--- table.insert(k.completeopts.default, long_words)
--- k.completeopts.text = { t = "echo some text for example", }
+local long_words = "wl.sh -W"
+table.insert(k.completeopts.default, long_words)
+-- k.completeopts.markdown = { "cat " .. dictfiles.path .. "text" }
 
 local l = require(plugin..'complete-line')
 -- l.vis_menu_lines = 4 -- default
