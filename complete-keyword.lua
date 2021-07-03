@@ -37,7 +37,7 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format("{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:'",
+	local cmd = string.format([[{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:' | tr -d '\n' ]],
 		group_cmds(M.completeopts, syntax),
 		prefix)
 	local status, out, err = vis:pipe(file, { start = 0, finish = file.size }, cmd)
