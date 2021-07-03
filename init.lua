@@ -9,9 +9,9 @@ local k = require(plugin..'complete-keyword')
 -- 	text = '/usr/share/words',
 -- }
 
--- table.insert(k.completeopts.default, "shell command")
+-- local long_words = "tr '[:alnum:]_.:-' '\n'"
+-- table.insert(k.completeopts.default, long_words)
 -- k.completeopts.text = { t = "echo some text for example", }
--- you can also insert functions (with only one argument)
 
 local l = require(plugin..'complete-line')
 -- l.vis_menu_lines = 4 -- default
