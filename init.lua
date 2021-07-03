@@ -11,7 +11,7 @@ local k = require(plugin..'complete-keyword')
 
 -- local long_words = "tr '[:alnum:]_.:-' '\n'"
 -- table.insert(k.completeopts.default, long_words)
--- k.completeopts.text = { t = "echo some text for example", }
+-- k.completeopts.markdown = { "cat " .. dictfiles.path .. "text" }
 
 local l = require(plugin..'complete-line')
 -- l.vis_menu_lines = 4 -- default
