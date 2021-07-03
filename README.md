@@ -11,6 +11,7 @@ for the [vis editor](https://github.com/martanne/vis/).
 * dictionary completion:
   - mapped to `<C-x><C-k>`
   - dictionary must be a new-line separated list of items.
+  - [wl.sh](https://github.com/jpaulogg/scripts/blob/master/wl.sh) is a helper that prints new-line separated list of words (or WORDS) to stdin
   - default dictionary path is `~/.local/share/dict/{syntax}`.
   - syntaxes names are the same defined by the [filetype.lua plugin](https://github.com/martanne/vis/blob/master/lua/plugins/filetype.lua)
 * keyword completion:
