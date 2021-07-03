@@ -27,9 +27,9 @@ of vis-complete](https://github.com/martanne/vis/pull/959).
 ### Configuration
 You can set some options from [init.lua](init.lua) file or from your visrc.lua:
 * [the path used to load the plugins](init.lua#L3)
-* [path to dictionary files](init.lua#L4-L7) - dictionary and keyword completion
-* [list of shell commands](init.lua#L12-L13) - used by keyword completion method.
-* [number of lines](init.lua#L13) in vis-menu - line completion
+* [path to dictionary files](init.lua#L7-L10) - dictionary and keyword completion
+* [list of shell commands](init.lua#L12-L14) - used by keyword completion method.
+* [number of lines](init.lua#L17) in vis-menu - line completion
 
 ### Installation
 Each script can be instaled separetaly. For example:
