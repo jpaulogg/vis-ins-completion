@@ -11,7 +11,10 @@ local k = require(plugin..'complete-keyword')
 
 -- local long_words = "tr '[:alnum:]_.:-' '\n'"
 -- table.insert(k.completeopts.default, long_words)
--- k.completeopts.markdown = { "cat " .. dictfiles.path .. "text" }
+-- k.completeopts.bash = {
+	-- "tr -cs '[:alnum:]_' '\n'",  -- uses file content, so it should be the first
+	-- "dmenu_path",                -- dmenu_path script ships with dmenu(1)
+-- }
 
 local l = require(plugin..'complete-line')
 -- l.vis_menu_lines = 4 -- default
