@@ -9,16 +9,14 @@ local K = require(plugin..'complete-keyword')
 -- 	text = '/usr/share/words',
 -- }
 
-local long_words = "wordlist -W"
 table.insert(K.completeopts.default, long_words)
 K.completeopts.text = {
-	long_words,
+-- apenas o primeiro comando lê a entrada padrão (no caso, o conteúdo do arquivo)
 	"tr -s '[:blank:][:punct:]' '\n'",
-	"cat " .. dictfiles.path .. "text", -- can't precede any command that uses stdin
+	"cat " .. dictfiles.path .. "text",
 }
 K.completeopts.bash = {
-	long_words,
-	"tr -cs '[:alnum:]_' '\n'",
+	"wl.sh -W",
 	"dmenu_path",
 	"cat " .. dictfiles.path .. "bash",
 }
