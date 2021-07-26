@@ -17,7 +17,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 		if err then vis:info(err) end
 		return
 	end
-	vis:insert(out:gsub('^' .. prefix, ''))
+	vis:insert(out:sub(#prefix + 1))
 end, "Complete line in current file")
 
 return M

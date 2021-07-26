@@ -16,7 +16,7 @@ local function group_cmds(tbl, syn)
 	local cmds = {}
 	local tbl_key = tbl[syn] or tbl['default']
 	for k,v in pairs(tbl_key) do
-		if type(v) == "function" then
+		if k == 'd' then
 			table.insert(cmds, v(syn))
 		else
 			table.insert(cmds, v)
@@ -37,20 +37,19 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format(
-		"{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:' | tr -d '\n'",
+	local cmd = string.format("{ %s; } | grep '^%s.' | sort -u | vis-menu -p 'keyword:'",
 		group_cmds(M.completeopts, syntax),
-		prefix
-	)
+		prefix)
 	local status, out, err = vis:pipe(file, { start = 0, finish = file.size }, cmd)
 	if status ~= 0 or not out then
 		if err then vis:info(err) end
 		return
 	end
+	local out = out:sub(#prefix + 1):gsub("\n$", "")
 	if vis.mode == vis.modes.INSERT then
-		vis:insert(out:gsub('^' .. prefix, ''))
+		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then
-		vis:replace(out:gsub('^' .. prefix, ''))
+		vis:replace(out)
 	end
 end, "Complete keyword in current file or in an external dictionary")
 

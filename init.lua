@@ -14,7 +14,7 @@ local C = require(plugin..'complete-char')
 
 -- L.vis_menu_lines = 4 -- default
 
-K.completeopts.default.w = [[tr '[:alnum:]_.:-' '\n']]  -- WORDS instead of words
+-- K.completeopts.default.w = "tr -cs '[:alnum:]_.:-' '\n'"  -- WORDS instead of words
 -- K.completeopts.bash = {
 	-- "tr -cs '[:alnum:]_' '\n'",  -- only one command will read file content
 	-- "dmenu_path",                -- dmenu_path script ships with dmenu(1)
