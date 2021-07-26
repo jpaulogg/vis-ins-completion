@@ -7,22 +7,22 @@ local K = require(plugin..'complete-keyword')
 local L = require(plugin..'complete-line')
 local C = require(plugin..'complete-char')
 
--- DICTFILES =  { 
+-- dictfiles =  { 
 -- 	dirname = '~/.local/share/dict/',
 -- 	text = '/usr/share/words',
 -- }
 
--- L.vis_menu_lines = 4 -- default
+-- L.VIS_MENU_LINES = 4 -- default
 
 K.completeopts.default.w =  "wl.sh -W"
 K.completeopts.bash = {
 	string.format("cat - $HISTFILE '%s' | wl.sh -W",
-		DICTFILES.dirname .. "bash"),
+		dictfiles.dirname .. "bash"),
 	"dmenu_path",
 }
 K.completeopts.text = {
 	"tr -s '[:blank:][:punct:]' '\n'",
-	"cat " .. DICTFILES.dirname .. "text",
+	"cat " .. dictfiles.dirname .. "text",
 }
 
 
