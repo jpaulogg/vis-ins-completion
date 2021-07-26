@@ -7,12 +7,12 @@ local K = require(plugin..'complete-keyword')
 local L = require(plugin..'complete-line')
 local C = require(plugin..'complete-char')
 
--- DICTFILES =  { 
+-- dictfiles =  { 
 -- 	dirname = '~/.local/share/dict/',
 -- 	text = '/usr/share/words',
 -- }
 
--- L.vis_menu_lines = 4 -- default
+-- L.VIS_MENU_LINES = 4 -- default
 
 -- K.completeopts.default.w = "tr -cs '[:alnum:]_.:-' '\n'"  -- WORDS instead of words
 -- K.completeopts.bash = {
