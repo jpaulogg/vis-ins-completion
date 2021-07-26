@@ -4,7 +4,7 @@ local M = {}
 M.completeopts = {
 	default = {
 		d = function(syntax)
-			local dict = dictfiles[syntax] or dictfiles["path"] .. syntax
+			local dict = DICTFILES[syntax] or DICTFILES["dirname"] .. syntax
 			return "cat " .. dict
 		end,
 		w = "tr -cs '[:alnum:]_' '\n'",
@@ -16,7 +16,7 @@ local function group_cmds(tbl, syn)
 	local cmds = {}
 	local tbl_key = tbl[syn] or tbl['default']
 	for k,v in pairs(tbl_key) do
-		if type(v) == 'function' then
+		if type(v) == "function" then
 			table.insert(cmds, v(syn))
 		else
 			table.insert(cmds, v)
@@ -37,9 +37,11 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format([[{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:' | tr -d '\n' ]],
+	local cmd = string.format(
+		"{ %s; } | grep '^%s' | sort -u | vis-menu -p 'keyword:' | tr -d '\n'",
 		group_cmds(M.completeopts, syntax),
-		prefix)
+		prefix
+	)
 	local status, out, err = vis:pipe(file, { start = 0, finish = file.size }, cmd)
 	if status ~= 0 or not out then
 		if err then vis:info(err) end
