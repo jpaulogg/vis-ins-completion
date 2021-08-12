@@ -4,7 +4,7 @@ local M = {}
 M.completeopts = {
 	default = {
 		d = function(syntax)
-			local dict = dictfiles[syntax] or dictfiles["path"] .. syntax
+			local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
 			return "cat " .. dict
 		end,
 		w = "tr -cs '[:alnum:]_' '\n'",
