@@ -37,14 +37,11 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format("{ %s; } | vis-complete -p 'keyword:' '%s'",
+	local cmd = string.format("{ %s; } | vis-complete -p 'keyword:' %s",
 		group_cmds(M.completeopts, syntax),
 		prefix)
-	local status, out, err = vis:pipe(file, { start = 0, finish = file.size }, cmd)
-	if status ~= 0 or not out then
-		if err then vis:info(err) end
-		return
-	end
+	local status, out = vis:pipe(file, { start = 0, finish = file.size }, cmd)
+	if status ~= 0 or not out then return end
 	if vis.mode == vis.modes.INSERT then
 		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then

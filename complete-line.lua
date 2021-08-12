@@ -1,5 +1,5 @@
 -- Line completion for vis editor
-local M = { VIS_MENU_LINES = 4 }
+local M = { VIS_MENU_LINES = 4, }
 
 vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 	local win = vis.win

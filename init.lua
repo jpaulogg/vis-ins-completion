@@ -14,10 +14,9 @@ local C = require(plugin..'complete-char')
 
 -- L.VIS_MENU_LINES = 4 -- default
 
-K.completeopts.default.w =  "wl.sh -W"
+K.completeopts.default.w = "wl.sh -W"
 K.completeopts.bash = {
-	string.format("cat - $HISTFILE '%s' | wl.sh -W",
-		dictfiles.dirname .. "bash"),
+	"wl.sh -W",
 	"dmenu_path",
 }
 K.completeopts.text = {
