@@ -1,19 +1,22 @@
--- insert completion: keyword, dictionary, line and character
+-- insert completion plugins: keyword, dictionary, line and character
 
 local plugin = 'plugins/ins-completion/'
 
-local d = require(plugin..'complete-dict')
-local k = require(plugin..'complete-keyword')
+local D = require(plugin..'complete-dict')
+local K = require(plugin..'complete-keyword')
+local L = require(plugin..'complete-line')
+local C = require(plugin..'complete-char')
+
 -- dictfiles =  { 
--- 	path = '~/.local/share/dict/',
+-- 	dirname = '~/.local/share/dict/',
 -- 	text = '/usr/share/words',
 -- }
 
--- local long_words = "tr -cs '[:alnum:]_.:-' '\n'")
--- table.insert(k.completeopts.default, long_words)
--- k.completeopts.text = { t = "echo some text for example", }
+-- L.VIS_MENU_LINES = 4 -- default
 
-local l = require(plugin..'complete-line')
--- l.vis_menu_lines = 4 -- default
+-- K.completeopts.default.w = "tr -cs '[:alnum:]_.:-' '\n'"  -- WORDS instead of words
+-- K.completeopts.bash = {
+	-- "tr -cs '[:alnum:]_' '\n'",  -- only one command will read file content
+	-- "dmenu_path",                -- dmenu_path script ships with dmenu(1)
+-- }
 
-local c = require(plugin..'complete-char')
