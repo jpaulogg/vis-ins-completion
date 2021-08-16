@@ -20,16 +20,17 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 
 	local syntax = win.syntax or 'bash' -- useful in the command prompt
 	local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
-	local cmd = string.format([[grep '^%s' %s | vis-menu -p 'dictionary:' | tr -d '\n']],
+	local cmd = string.format([[grep '^%s.' %s | vis-menu -i -b | tr -d '\n']],
 		prefix, dict)
 	local status, out, err = vis:pipe(file, { start = 0, finish = 0 }, cmd)
 	if status ~= 0 or not out then
 		if err then vis:info(err) end
 		return
 	end
+	local out = out:sub(#prefix + 1)
 	if vis.mode == vis.modes.INSERT then
-		vis:insert(out:gsub('^' .. prefix, ''))
+		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then
-		vis:replace(out:gsub('^' .. prefix, ''))
+		vis:replace(out)
 	end
 end, "Complete word in dictionary file")
