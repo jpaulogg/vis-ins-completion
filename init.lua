@@ -15,10 +15,6 @@ local C = require(plugin..'complete-char')
 -- L.VIS_MENU_LINES = 4 -- default
 
 K.completeopts.default.w = "wl.sh -W"
-K.completeopts.bash = {
-	"wl.sh -W",
-	"dmenu_path",
-}
 K.completeopts.text = {
 	"tr -s '[:blank:][:punct:]' '\n'",
 	"cat " .. dictfiles.dirname .. "text",
