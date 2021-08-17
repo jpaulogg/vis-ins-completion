@@ -18,7 +18,7 @@ modes and supports multiple selections.
   - syntaxes names are the same defined by the [filetype.lua plugin](https://github.com/martanne/vis/blob/master/lua/plugins/filetype.lua)
 * keyword completion:
   - mapped to `<C-n>`. **Note that this will overwrite standard word completion** [mapping](https://github.com/martanne/vis/blob/master/lua/plugins/complete-word.lua)
-  - this method combine the output of shell commands in the [completeopts](init.lua#L12-L13) table.
+  - this method combine the output of shell commands in the [completeopts](complete-keyword.lua#L4-L13) table.
   - the default behaviour is to combine word completion and dictionary completion.
 
 ### flex-completion branch
@@ -30,8 +30,8 @@ short words (in addition to other improvements).
 You can set some options from [init.lua](init.lua) file or from your visrc.lua:
 * [the path used to load the plugins](init.lua#L3)
 * [path to dictionary files](init.lua#L10-L13) - dictionary and keyword completion
-* [list of shell commands](init.lua#L17-L19) - used by keyword completion method.
 * [number of lines](init.lua#L15) in vis-menu - line completion
+* [list of shell commands](init.lua#L17-L19) - used by keyword completion method.
 
 ### Installation
 Each script can be instaled separetaly. For example:
