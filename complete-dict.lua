@@ -1,7 +1,7 @@
 -- completes words in dictionary file defined by syntax.
 
 dictfiles =  { 
-	dirname = '~/.local/share/dict/',
+	dirname = '$HOME/.local/share/dict/',
 --	text = '/usr/share/words',
 }
 
@@ -20,7 +20,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 
 	local syntax = win.syntax or 'bash' -- useful in the command prompt
 	local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
-	local cmd = string.format("vis-complete -p 'dictionary:' %s < %s",
+	local cmd = string.format('vis-complete -p "dictionary:" "%s" < "%s"',
 		prefix, dict)
 	local status, out, err = vis:pipe(file, { start = 0, finish = 0 }, cmd)
 	if status ~= 0 or not out then
