@@ -5,7 +5,9 @@ M.completeopts = {
 	default = {
 		d = function(syntax)
 			local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
-			return "cat " .. dict
+			-- #,$,<,> podem aparecer no começo/final dos itens
+			local cmd = string.format('tr -d "[#$<>]" < "%s"', dict)
+			return cmd
 		end,
 		w = "tr -cs '[:alnum:]_' '\n'",
 	},
@@ -37,7 +39,7 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local prefix = file:content(range)
 	if not prefix then return end
 	local syntax = win.syntax or 'text'
-	local cmd = string.format("{ %s; } | vis-complete -p 'keyword:' %s",
+	local cmd = string.format("{ %s; } | vis-complete -p 'keyword:' '%s'",
 		group_cmds(M.completeopts, syntax),
 		prefix)
 	local status, out = vis:pipe(file, { start = 0, finish = file.size }, cmd)
