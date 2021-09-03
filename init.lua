@@ -18,8 +18,9 @@ local c = require(plugin..'complete-char')
 k.completeopts.default.w = [[tr -cs '[:alpha:]:._-' '\n']]
 k.completeopts.text = {
 	"tr -s '[:blank:][:punct:]' '\n'",
-	"dmenu_path",
 	"cat " .. dictfiles.dirname .. "text",
 }
-
-
+k.completeopts.bash = {
+	"tr -cs '[:alpha:]:._-' '\n'",
+	"dmenu_path",
+}
