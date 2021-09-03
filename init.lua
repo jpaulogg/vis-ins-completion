@@ -2,21 +2,26 @@
 
 local plugin = 'plugins/ins-completion/'
 
-local D = require(plugin..'complete-dict')
-local K = require(plugin..'complete-keyword')
-local L = require(plugin..'complete-line')
-local C = require(plugin..'complete-char')
+local d = require(plugin..'complete-dict')
+local k = require(plugin..'complete-keyword')
+local l = require(plugin..'complete-line')
+local c = require(plugin..'complete-char')
 
 -- dictfiles =  { 
 -- 	dirname = '~/.local/share/dict/',
 -- 	text = '/usr/share/words',
 -- }
 
--- L.VIS_MENU_LINES = 4 -- default
+-- l.VIS_MENU_LINES = 4 -- default
 
--- K.completeopts.default.w = "tr -cs '[:alnum:]_.:-' '\n'"  -- WORDS instead of words
--- K.completeopts.bash = {
-	-- "tr -cs '[:alnum:]_' '\n'",  -- only one command will read file content
-	-- "dmenu_path",                -- dmenu_path script ships with dmenu(1)
--- }
-
+-- usar PALVRAS(longas) ao invés de palavras(curtas)
+k.completeopts.default.w = [[tr -cs '[:alpha:]:._-' '\n']]
+k.completeopts.text = {
+	"tr -s '[:blank:][:punct:]' '\n'",
+	"cat /home/jpgg/.local/share/dict/text",
+}
+k.completeopts.bash = {
+	"tr -cs '[:alpha:]:._-' '\n'",
+	"cat /home/jpgg/.local/share/dict/bash",
+	"dmenu_path",
+}
