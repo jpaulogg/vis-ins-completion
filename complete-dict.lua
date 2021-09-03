@@ -17,6 +17,8 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 	if range.start == range.finish then return end
 	local prefix = file:content(range)
 	if not prefix then return end
+	local _, j = string.find(prefix, "[^%w_.:-@&$#<]+")
+	if j then prefix = prefix:sub(j + 1) end
 
 	local syntax = win.syntax or 'bash' -- useful in the command prompt
 	local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax

@@ -5,8 +5,7 @@ M.completeopts = {
 	default = {
 		d = function(syntax)
 			local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
-			-- #,$,<,> podem aparecer no começo/final dos itens
-			local cmd = string.format('tr -d "[#$<>]" < "%s"', dict)
+			local cmd = "cat " ..  dict
 			return cmd
 		end,
 		w = "tr -cs '[:alnum:]_' '\n'",
@@ -32,12 +31,14 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 	local file = win.file
 	local pos = win.selection.pos
 	if not pos then return end
-	local range = file:text_object_word(pos > 0 and pos-1 or pos);
+	local range = file:text_object_longword(pos > 0 and pos-1 or pos);
 	if not range then return end
 	if range.finish > pos then range.finish = pos end
 	if range.start == range.finish then return end
 	local prefix = file:content(range)
 	if not prefix then return end
+	local _, j = string.find(prefix, "[^%w_.:-@&$#<]+")
+	if j then prefix = prefix:sub(j + 1) end
 	local syntax = win.syntax or 'text'
 	local cmd = string.format("{ %s; } | vis-complete -p 'keyword:' '%s'",
 		group_cmds(M.completeopts, syntax),

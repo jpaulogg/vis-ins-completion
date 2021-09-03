@@ -18,9 +18,10 @@ local c = require(plugin..'complete-char')
 k.completeopts.default.w = [[tr -cs '[:alpha:]:._-' '\n']]
 k.completeopts.text = {
 	"tr -s '[:blank:][:punct:]' '\n'",
-	"cat " .. dictfiles.dirname .. "text",
+	"cat /home/jpgg/.local/share/dict/text",
 }
 k.completeopts.bash = {
 	"tr -cs '[:alpha:]:._-' '\n'",
+	"cat /home/jpgg/.local/share/dict/bash",
 	"dmenu_path",
 }
