@@ -27,7 +27,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 		if err then vis:info(err) end
 		return
 	end
-	local out = out:sub(#prefix + 1):gsub("\n$", "")
+	local out = out:gsub("\n$", ""):gsub("^"..prefix, "")
 	if vis.mode == vis.modes.INSERT then
 		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then

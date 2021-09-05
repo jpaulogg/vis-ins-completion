@@ -15,10 +15,15 @@ local c = require(plugin.."complete-char")
 -- l.VIS_MENU_LINES = 4 -- default
 
 -- usar PALVRAS(longas) ao invés de palavras(curtas)
-k.completeopts.default.w = [[tr -s "[:blank:]([{,;='\"" "\n"]]
+k.completeopts.default.w = [[tr -cs "[:alpha:]_.:-" "\n"]]
+
+k.completeopts.text = {
+	"tr -s '[:blank:][:punct:]' '\n'",    -- suporte para caracteres multibytes
+	"cat ~/.local/share/dict/text",
+}
 
 k.completeopts.bash = {
-	[[tr -s "[:blank:]([{,;='\"" "\n"]],
+	[[tr -cs "[:alpha:]_.:-" "\n"]],
 	"cat ~/.local/share/dict/bash",
 	"dmenu_path",
 }
