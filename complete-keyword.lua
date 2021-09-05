@@ -4,7 +4,7 @@ local M = {}
 M.completeopts = {
 	default = {
 		d = function(syntax)
-			local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
+			local dict = dictfiles[syntax] or (dictfiles["dirname"] .. syntax)
 			local cmd = "cat " ..  dict
 			return cmd
 		end,
@@ -50,7 +50,7 @@ vis:map(vis.modes.INSERT, "<C-n>", function()
 		if err then vis:info(err) end
 		return
 	end
-	local out = out:sub(#prefix + 1):gsub("\n$", "")
+	local out = out:gsub("\n$", ""):gsub("^"..prefix, "")
 	if vis.mode == vis.modes.INSERT then
 		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then
