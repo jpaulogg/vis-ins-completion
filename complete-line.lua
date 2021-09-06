@@ -6,11 +6,11 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 	local file = win.file
 	local sel = win.selection
 	local lnum = sel.line
-	local cnum = sel.col
+	local pos = sel.pos
 	local line = file.lines[lnum]
-	local prefix = line:sub(1, cnum - 1):gsub("^%s+", "")
+	local prefix = line:sub(1, pos):gsub("^%s+", "")
 	local cmd = string.format([[sed 's/^\s\+//' | grep "^%s." | vis-menu -i -b -l %d]],
-		prefix:gsub("[[%^$.*\\\"']", "\\%0"),
+		prefix:gsub('[[%^$.*\\"]', "\\%0"),
 		M.VIS_MENU_LINES)
 	local status, out, err = vis:pipe(file, {start = 0, finish = file.size}, cmd)
 	if status ~= 0 or not out then
