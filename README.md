@@ -22,7 +22,7 @@ modes and supports multiple selections.
   - the default behaviour is to combine word completion and dictionary completion.
 
 ### flex-completion branch
-flex-completion branch, uses [my version of vis-complete](https://github.com/martanne/vis/pull/959).
+flex-completion branch uses [my version of vis-complete](https://github.com/martanne/vis/pull/959).
 With this, vis-complete can be used to complete text objects other than
 short words (in addition to other improvements).
 
