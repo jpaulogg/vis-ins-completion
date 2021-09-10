@@ -18,7 +18,7 @@ local c = require(plugin.."complete-char")
 k.completeopts.default.w = [[tr -cs "[:alpha:]_.:-" "\n"]]
 
 k.completeopts.text = {
-	"tr -s '[:blank:][!-,./:-?[-^{-~]' '\n'",    -- suporte para caracteres multibytes
+	"tr -cs 'a-zA-ZçÇáéíóúÁÉÍÓÚâêôÂÊÔãÃ-' '\n'",    -- suporte para caracteres multibytes
 	"cat ~/.local/share/dict/text",
 }
 

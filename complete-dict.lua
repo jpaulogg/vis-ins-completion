@@ -20,14 +20,12 @@ vis:map(vis.modes.INSERT, "<C-x><C-k>", function()
 	if j then prefix = prefix:sub(j + 1) end
 	local syntax = win.syntax or 'bash' -- useful in the command prompt
 	local dict = dictfiles[syntax] or dictfiles["dirname"] .. syntax
-	local cmd = string.format("grep '^%s.' %s | vis-menu -i -b -p 'dictionary:'",
-		prefix, dict)
+	local cmd = string.format("vis-complete -p 'dictionary:' '%s' < %s", prefix, dict)
 	local status, out, err = vis:pipe(file, { start = 0, finish = 0 }, cmd)
 	if status ~= 0 or not out then
 		if err then vis:info(err) end
 		return
 	end
-	local out = out:gsub("\n$", ""):gsub("^"..prefix, "")
 	if vis.mode == vis.modes.INSERT then
 		vis:insert(out)
 	elseif vis.mode == vis.modes.REPLACE then
