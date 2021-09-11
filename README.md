@@ -21,11 +21,6 @@ modes and supports multiple selections.
   - this method combine the output of shell commands in the [completeopts](complete-keyword.lua#L4-L13) table.
   - the default behaviour is to combine word completion and dictionary completion.
 
-### flex-completion branch
-flex-completion branch uses [my version of vis-complete](https://github.com/martanne/vis/pull/959).
-With this, vis-complete can be used to complete text objects other than
-short words (in addition to other improvements).
-
 ### Configuration
 You can set some options from [init.lua](init.lua) file or from your visrc.lua:
 * [the path used to load the plugins](init.lua#L3)
