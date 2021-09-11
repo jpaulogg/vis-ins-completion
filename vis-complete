@@ -1,0 +1,49 @@
+#!/bin/sh
+set -e
+
+basic_regex_quote() { printf "%s" "$1" | sed 's/[|\\.*^$[]/\\&/g'; }
+
+print_completion() {
+	sort -u \
+		| $VIS_MENU \
+		| sed "s|^$1||" \
+		| tr -d '\n'
+}
+
+PATTERN=""
+COMPLETE_FILE=0
+FIND_FILE_LIMIT=1000
+VIS_MENU="vis-menu -i -b"
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-h|--help)
+		echo "usage: $(basename "$0") [-h] [--file|--word] [pattern]"
+		exit 0;
+		;;
+	-[lp])
+		VIS_MENU="$VIS_MENU $1 $2"
+		shift 2
+		;;
+	--file)
+		COMPLETE_FILE=1
+		shift
+		;;
+	*)
+		PATTERN="$1"
+		QPATTERN="$(basic_regex_quote "$1")"   # Avoid problems with sed and grep.
+		break
+		;;
+	esac
+done
+
+if [ $COMPLETE_FILE = 0 ]; then
+	grep "^$QPATTERN." | print_completion "$QPATTERN"
+else
+	find "$PATTERN"* \
+		-name ".*" -prune \
+		-o -print 2> /dev/null \
+		| head -n $FIND_FILE_LIMIT \
+		| sed "s|^$(dirname "$QPATTERN".)/||" \
+		| print_completion "${QPATTERN##*/}"
+fi
