@@ -14,7 +14,7 @@ local c = require(plugin.."complete-char")
 
 -- l.VIS_MENU_LINES = 4 -- default
 
--- usar PALVRAS(longas) ao invés de palavras(curtas)
+-- usar PALAVRAS(longas) ao invés de palavras(curtas)
 k.completeopts.default.w = 'tr -cs "[:alpha:]_.:-" "\\n"'
 
 k.completeopts.text = {
