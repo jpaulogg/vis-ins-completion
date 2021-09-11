@@ -1,4 +1,4 @@
--- Insert the character which is above/below the cursor
+-- insert the character which is above/below the cursor
 
 local function complete_char(direction)
 	local file = vis.win.file
