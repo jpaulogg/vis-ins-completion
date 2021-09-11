@@ -1,6 +1,6 @@
 -- insert completion plugins: keyword, dictionary, line and character
 
-local plugin = 'plugins/ins-completion/'
+local plugin = 'plugins/vis-ins-completion/'
 
 local d = require(plugin..'complete-dict')
 local k = require(plugin..'complete-keyword')
