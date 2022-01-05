@@ -34,10 +34,7 @@ Each script can be instaled separetaly. For example:
 mkdir -p ~/.config/vis/plugins
 cd ~/.config/vis/plugins
 curl -O https://raw.githubusercontent.com/jpaulogg/vis-ins-completion/master/complete-dict.lua
-```
-In your visrc.lua:
-```lua
-require("plugins/complete-dict")
+echo 'require("plugins/complete-dict")' >> ../visrc.lua
 ```
 
 To install all scripts:
@@ -45,7 +42,5 @@ To install all scripts:
 mkdir -p ~/.config/vis/plugins
 cd ~/.config/vis/plugins
 git clone https://github.com/jpaulogg/vis-ins-completion
-```
-```lua
-require("plugins/vis-ins-completion")
+echo 'require("plugins/vis-ins-completion")' >> ../visrc.lua
 ```
