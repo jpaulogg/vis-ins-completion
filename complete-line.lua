@@ -6,9 +6,9 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 	local file = win.file
 	local sel = win.selection
 	local lnum = sel.line
-	local pos = sel.pos
+	local col = sel.col
 	local line = file.lines[lnum]
-	local prefix = line:sub(1, pos):gsub("^%s+", "")
+	local prefix = line:sub(1, col-1):gsub("^%s+", "")
 	local cmd = string.format([[sed 's/^\s\+//' | grep "^%s." | vis-menu -i -b -l %d]],
 		prefix:gsub('[[%^$.*\\"]', "\\%0"),
 		M.VIS_MENU_LINES)
