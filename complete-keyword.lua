@@ -4,7 +4,7 @@ local M = {}
 M.completeopts = {
 	default = {
 		d = function(syntax)
-			local dict = dictfiles[syntax] or (dictfiles["dirname"] .. syntax)
+			local dict = dictfiles[syntax] or (dictfiles["dirname"] and (dictfiles["dirname"] .. syntax)) or "/dev/null"
 			local cmd = "cat " ..  dict
 			return cmd
 		end,
